@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taxi Oceana - Votre Chauffeur Premium 24/7</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Variables de Couleurs */
+        :root {
+            --color-primary: #0C3E6E; /* Bleu Foncé Métallique */
+            --color-secondary: #FFC005; /* Or/Jaune Métallique */
+            --color-accent: #1B9CE4; /* Bleu Océan */
+            --color-text: #333;
+            --color-light: #f9f9f9;
+        }
+
+        /* ----------------------------------- */
+        /* Styles Généraux */
+        /* ----------------------------------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--color-text);
+            background-color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--color-primary);
+            transition: color 0.3s;
+        }
+        .contact-link{
+            color: var(--color-light);
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padded {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--color-secondary);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            color: #666;
+        }
+
+        /* ----------------------------------- */
+        /* Navbar Originale (Plus Grande & Centrée) */
+        /* ----------------------------------- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            z-index: 100;
+            display: flex;
+            flex-direction: column; /* Organise le logo et la nav verticalement */
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .logo-large {
+            margin-bottom: 10px;
+        }
+
+        .logo-large img {
+            height: 70px; /* Logo bien visible */
+            width: auto;
+            display: block;
+            transition: transform 0.3s;
+        }
+        
+        .navbar nav {
+            width: 100%;
+            display: flex;
+            justify-content: center; /* Centre les liens de navigation */
+            padding-top: 5px;
+            border-top: 1px solid var(--color-light); /* Séparateur léger */
+        }
+
+        .navbar a {
+            margin: 0 20px;
+            font-weight: 600;
+            font-size: 1em;
+            color: var(--color-primary);
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        /* Effet de surlignage premium */
+        .navbar a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--color-secondary);
+            transition: width 0.3s ease;
+        }
+
+        .navbar a:hover:after {
+            width: 80%;
+        }
+
+        .btn-contact {
+            background: var(--color-secondary);
+            color: var(--color-primary) !important;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: 700;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn-contact:hover {
+            background: var(--color-accent);
+            color: white !important;
+        }
+
+        .btn-contact:hover:after {
+            display: none;
+        }
+
+        /* ----------------------------------- */
+        /* Section Hero (Accueil) - Image Spécifique */
+        /* ----------------------------------- */
+        .hero {
+            height: 100vh;
+            /* Utilisation de l'image de votre dossier */
+            background: 
+                linear-gradient(rgba(12, 62, 110, 0.7), rgba(12, 62, 110, 0.5)),
+                url('image1.png') no-repeat center center/cover; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 100px; /* Pour éviter le chevauchement avec la navbar plus grande */
+        }
+
+        .hero h1 {
+            font-size: 4.5em;
+            color: white; /* Texte blanc pour contraster avec le fond bleu foncé */
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h1 strong {
+            color: var(--color-secondary);
+        }
+
+        .hero h2 {
+            font-size: 2em;
+            font-weight: 400;
+            color: var(--color-light);
+            margin-bottom: 50px;
+        }
+
+        .hero-mobile-subtext {
+            display: none;
+        }
+
+        /* Bouton WhatsApp - Conserve le style */
+        .btn-whatsapp {
+            display: inline-block;
+            background: #25D366; 
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2em;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        /* ----------------------------------- */
+        /* Section Avis Multiples */
+        /* ----------------------------------- */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .review-card {
+            background: var(--color-light);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--color-secondary);
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .review-header i {
+            color: #4285F4; /* Bleu Google */
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        .stars {
+            color: var(--color-secondary);
+            font-size: 1.1em;
+        }
+        
+        .reviewer-name {
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-left: 10px;
+        }
+
+        .review-text {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        /* ----------------------------------- */
+        /* Reste des sections (Avantages, Services, Contact) - pas de changement majeur dans le style */
+        /* ----------------------------------- */
+        .feature-grid {
+            display: flex;
+            gap: 30px;
+            text-align: center;
+        }
+        .feature-item {
+            flex: 1;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            background: var(--color-light);
+            transition: transform 0.3s;
+        }
+        .bg-light-blue {
+            background-color: #F0F8FF; 
+        }
+        .service-list {
+            list-style: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .service-list li {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 5px solid var(--color-accent);
+            border-radius: 5px;
+        }
+        .bg-footer {
+            background-color: var(--color-primary);
+            color: var(--color-light);
+        }
+        .contact-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 50px;
+        }
+        .icon-gold {
+            color: var(--color-secondary);
+            margin-right: 10px;
+        }
+
+        /* ----------------------------------- */
+        /* Animation d'Entrée (Preloader) - Conserve l'effet premium */
+        /* ----------------------------------- */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            transition: opacity 1s ease-out, visibility 1s;
+        }
+        .preloader-hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .logo-animation {
+            font-size: 3em;
+            font-weight: 900;
+            color: var(--color-primary);
+            position: relative;
+            overflow: hidden;
+            animation: scaleIn 0.8s ease-out forwards;
+        }
+        .logo-animation::before, .logo-animation::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: translateX(-100%);
+        }
+        .logo-animation::before {
+            z-index: 10;
+            background: var(--color-primary);
+            animation: slideIn 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+        }
+        .logo-animation::after {
+            z-index: 5;
+            background: var(--color-secondary);
+            animation: slideIn 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards 0.2s;
+        }
+        @keyframes slideIn {
+            0% { transform: translateX(-100%); }
+            50% { transform: translateX(0); }
+            100% { transform: translateX(100%); }
+        }
+        @keyframes scaleIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .content-hidden {
+            opacity: 0;
+        }
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 0;
+            }
+            .logo-large img {
+                height: 60px;
+            }
+            .navbar nav {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .navbar a {
+                margin: 5px 10px;
+            }
+            .hero {
+                margin-top: 110px;
+                padding: 0;
+                height: auto;
+                position: relative;
+                aspect-ratio: 1 / 1;
+                width: 100%;
+                display: block;
+                background:
+                    linear-gradient(rgba(12, 62, 110, 0.7), rgba(12, 62, 110, 0.65)),
+                    url('image-mobile.png') center center/contain no-repeat;
+                background-color: var(--color-primary);
+            }
+            .hero h1 {
+                font-size: 2em;
+                line-height: 1.2;
+                margin-bottom: 18px;
+                padding: 0 8px;
+            }
+            .hero h2 {
+                display: none;
+            }
+            .hero-content {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: center;
+                padding: 32px 20px 28px;
+                background: linear-gradient(180deg, rgba(12, 62, 110, 0.05) 25%, rgba(12, 62, 110, 0.85) 95%);
+            }
+            .btn-whatsapp {
+                width: 100%;
+                max-width: 210px;
+                padding: 12px 22px;
+                font-size: 1.05em;
+            }
+            .hero-mobile-subtext {
+                display: block;
+                margin: 20px auto 0;
+                padding: 0 24px;
+                text-align: center;
+                font-size: 1.05em;
+                line-height: 1.6;
+                color: var(--color-text);
+            }
+            .feature-grid {
+                flex-direction: column;
+            }
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="preloader" class="preloader">
+        <div class="logo-animation">TAXI OCEANA</div>
+    </div>
+
+    <div id="content" class="content-hidden">
+        
+        <header class="navbar">
+            <div class="logo-large">
+                <img src="./logo.png" alt="Logo Taxi Oceana">
+            </div>
+            <nav>
+                <a href="#accueil">Accueil</a>
+                <a href="#avantages">Avantages</a>
+                <a href="#services">Services</a>
+                <a href="#avis">Avis Clients</a>
+                <a href="#contact" class="btn-contact">Contact</a>
+            </nav>
+        </header>
+
+        <section id="accueil" class="hero">
+            <div class="hero-content">
+                <h1>Taxi Oceana</h1> </br>
+                <h2>Véhicule confortable, haut de gamme </br>
+Taxi conventionné CPAM
+🚕 🏥
+
+</h2>
+                <a href="https://wa.me/33630237510?text=Bonjour%20Taxi%20Oceana%2C%20j'aimerais%20r%C3%A9server%20un%20trajet." class="btn-whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Réserver
+                </a>
+            </div>
+        </section>
+
+        <div class="hero-mobile-subtext">
+            Chauffeur disponible 24h/24 et 7j/7, avec un confort et une flexibilité exemplaires.
+        </div>
+
+        <section id="avantages" class="section-padded">
+            <div class="container">
+                <h2 class="section-title">✨ L'Avantage Taxi Oceana</h2>
+                <p class="subtitle">Prestations haut de gamme, souples sur les horaires et sans limite de destination.</p>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-car-side"></i>
+                        <h3>Véhicule grand confort</h3>
+                        <p>Voyagez dans un véhicule récent, spacieux et discret, pensé pour votre bien-être.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-calendar-check"></i>
+                        <h3>Service disponible 24h/24 et 7j/7</h3>
+                        <p>Présents à toute heure, même les jours fériés. Votre planning devient le nôtre.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Toutes Destinations</h3>
+                        <p>Longue distance, transferts régionaux ou trajets internationaux : nous vous emmenons partout.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section-padded bg-light-blue">
+            <div class="container">
+                <h2 class="section-title">Nos Services </h2>
+                <ul class="service-list">
+                    <li><i class="fas fa-user-nurse icon-blue"></i> Taxi conventionné / transport médical (TPMR) : transferts aller-retour, agréés CPAM.</li>
+                    <li><i class="fas fa-plane-arrival icon-blue"></i> Transferts aéroports et gares : ponctualité garantie vers ou depuis tous les hubs.</li>
+                    <li><i class="fas fa-glass-cheers icon-blue"></i> Événements spéciaux : chauffeur privé pour mariages, soirées et séminaires.</li>
+                    <li><i class="fas fa-route icon-blue"></i> Longue distance et international : voyages sur mesure dans un confort optimal.</li>
+                    <li><i class="fas fa-car icon-blue"></i> Trajets privés : un service sur mesure, dans le confort et la discrétion.</li>                
+                </ul>
+            </div>
+        </section>
+
+        <section id="avis" class="section-padded">
+            <div class="container">
+                <h2 class="section-title">⭐ Avis Clients</h2>
+                <p class="subtitle">La confiance est notre priorité. Découvrez ce que nos clients disent de notre service premium.</p>
+                <div class="reviews-grid">
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <i class="fab fa-google"></i>
+                            <span class="stars">★★★★★</span>
+                            <span class="reviewer-name">Mathieu P.</span>
+                        </div>
+                        <p class="review-text">"Réservation de dernière minute à 3h du matin, le chauffeur était là en avance. Confort exceptionnel et grande courtoisie. Le vrai service 24/7. Je recommande vivement !"</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <i class="fab fa-google"></i>
+                            <span class="stars">★★★★★</span>
+                            <span class="reviewer-name">Poopeye</span>
+                        </div>
+                        <p class="review-text">"J’ai eu le plaisir de faire appel à ce taxi lors de mon voyage d’affaires à Nice, et je ne peux que saluer le professionnalisme exemplaire du chauffeur. Ponctuel, courtois et toujours de bonne humeur, il a rendu le trajet à la fois agréable et détendu. La voiture était impeccable, le service irréprochable et la conversation très sympathique.
+Un vrai plaisir de tomber sur un professionnel aussi sérieux et souriant. Je recommande vivement à tous ceux qui cherchent un taxi fiable et chaleureux à Nice ! 🚖✨"</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <i class="fab fa-google"></i>
+                            <span class="stars">★★★★★</span>
+                            <span class="reviewer-name">Mehdi.B</span>
+                        </div>
+                        <p class="review-text">"Service de taxi conventionné de qualité supérieure. Très attentif aux besoins des patients. Ponctuel et discret. Un partenaire de transport médical fiable."</p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="https://share.google/0gGzqSDa0MV70nPVw" target="_blank" class="btn-gold">Voir tous nos Avis sur Google</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section-padded bg-footer">
+            <div class="container contact-grid">
+                <div>
+                    <h2 class="section-title-footer" style="color: var(--color-secondary);">Contactez Taxi Oceana</h2>
+                    <p>Notre équipe est à votre disposition 24h/24 7j/7 pour toute demande de réservation ou devis.</p>
+                    <p style="margin-top: 15px;"><i class="fas fa-phone-alt icon-gold"></i> Téléphone : <a href="tel:+33630237510" class="contact-link">06 30 23 75 10</a></p>
+                    <p><i class="fas fa-envelope icon-gold"></i> Email : <a href="mailto:taxioceana@yahoo.com" class="contact-link">taxioceana@yahoo.com</a></p>
+                </div>
+                </div>
+        </section>
+
+    </div> <script>
+        // Le code JavaScript pour l'animation d'entrée
+        document.addEventListener("DOMContentLoaded", function() {
+            const preloader = document.getElementById('preloader');
+            const content = document.getElementById('content');
+            
+            // Délai total de l'animation d'entrée (2.5 secondes)
+            setTimeout(() => {
+                // Masque le préchargeur
+                preloader.classList.add('preloader-hidden');
+
+                // Affiche le contenu principal après la transition du préchargeur (1000ms)
+                setTimeout(() => {
+                    preloader.style.display = 'none'; 
+                    content.classList.remove('content-hidden');
+                    // Anime l'apparition du contenu
+                    content.style.transition = 'opacity 1s ease-in';
+                    content.style.opacity = '1';
+                }, 1000); 
+            }, 2500); 
+        });
+    </script>
+</body>
+</html>
