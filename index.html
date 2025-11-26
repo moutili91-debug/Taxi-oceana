@@ -401,13 +401,18 @@
                     url('image1.png') center center/contain no-repeat;
                 background-color: var(--color-primary);
             }
-            .hero h1 {
-                font-size: 2em;
+            @media (max-width: 768px) {
+            /* ... autres styles ... */
+            
+            .hero h1 { 
+                font-size: 1.8em; /* Nouvelle taille pour iPhone (plus petit que 2em) */
                 line-height: 1.2;
                 margin-bottom: 18px;
                 padding: 0 8px;
             }
-
+            
+            /* ... autres styles ... */
+        }
             .hero-content {
                 position: absolute;
                 inset: 0;
@@ -424,7 +429,7 @@
                 padding: 12px 22px;
                 font-size: 1.05em;
             }
-            .hero-mobile-subtext {
+           .hero-mobile-subtext {
     display: block;
     margin: 20px auto 0;
     padding: 0 24px;
