@@ -389,55 +389,67 @@
                 margin: 5px 10px;
             }
             .hero {
+                /* On utilise l'image1.png et on garde le fond bleu si elle n'est pas trouvée */
                 margin-top: 110px;
                 padding: 0;
-                height: auto;
+                height: 550px; /* Taille fixe raisonnable pour mobile */
                 position: relative;
-                aspect-ratio: 1 / 1;
                 width: 100%;
-                display: block;
                 background:
                     linear-gradient(rgba(12, 62, 110, 0.7), rgba(12, 62, 110, 0.65)),
-                    url('image1.png') center center/contain no-repeat;
+                    url('image1.png') center center/cover no-repeat; /* Utilisation de cover au lieu de contain pour remplir */
                 background-color: var(--color-primary);
             }
-            @media (max-width: 768px) {
-            /* ... autres styles ... */
             
-            .hero h1 { 
-                font-size: 1.8em; /* Nouvelle taille pour iPhone (plus petit que 2em) */
-                line-height: 1.2;
-                margin-bottom: 18px;
-                padding: 0 8px;
-            }
-            
-            /* ... autres styles ... */
-        }
+            /* CORRECTION DU TITRE ET DU CONTENEUR DE TEXTE */
             .hero-content {
                 position: absolute;
                 inset: 0;
                 display: flex;
                 flex-direction: column;
-                justify-content: flex-end;
+                justify-content: flex-end; /* Pour placer le texte en bas de l'image (comme vous l'aviez fait) */
                 align-items: center;
                 padding: 32px 20px 28px;
+                
+                /* AJOUT DE CONTRAINTE POUR LE TEXTE */
+                width: 100%; /* Prend toute la largeur disponible */
+                max-width: none; /* Retirez toute limite qui pourrait causer des problèmes */
+
                 background: linear-gradient(180deg, rgba(12, 62, 110, 0.05) 25%, rgba(12, 62, 110, 0.85) 95%);
             }
+            
+            .hero h1 {
+                font-size: 7.5vw; /* TAILLE DYNAMIQUE TRES PETITE (7.5% de la largeur de l'écran) */
+                line-height: 1.1;
+                margin-bottom: 12px; /* Réduction de l'espace pour gagner de la place */
+                padding: 0 8px;
+            }
+            
+            .hero h2 {
+                /* Si vous voulez que ce texte apparaisse : changez "none" en "block" */
+                display: block; 
+                font-size: 1.1em;
+                margin-bottom: 10px;
+                padding: 0 8px;
+                color: var(--color-light); /* Assurez-vous qu'il est blanc pour être visible */
+            }
+
             .btn-whatsapp {
                 width: 100%;
-                max-width: 210px;
-                padding: 12px 22px;
-                font-size: 1.05em;
+                max-width: 250px;
+                padding: 14px 22px;
+                font-size: 1.1em;
             }
-           .hero-mobile-subtext {
-    display: block;
-    margin: 20px auto 0;
-    padding: 0 24px;
-    text-align: center;
-    font-size: 1.05em;
-    line-height: 1.6;
-    color: var(--color-light); /* <--- Changé à Blanc (#f9f9f9) */
-}
+            
+            .hero-mobile-subtext {
+                display: block;
+                margin: 20px auto 0;
+                padding: 0 24px;
+                text-align: center;
+                font-size: 1.05em;
+                line-height: 1.6;
+                color: var(--color-text);
+            }
             .feature-grid {
                 flex-direction: column;
             }
