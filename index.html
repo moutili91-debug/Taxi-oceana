@@ -215,6 +215,114 @@
         }
 
         /* ----------------------------------- */
+        /* Styles Accordion (Services Cliquables) */
+        /* ----------------------------------- */
+        .accordion-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden; 
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.3s;
+        }
+
+        .accordion-item:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .accordion-header {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--color-light); 
+            border-left: 5px solid var(--color-accent);
+            transition: background-color 0.3s;
+        }
+
+        .accordion-header:hover {
+            background-color: #e8f5ff; 
+        }
+
+        .accordion-header i:first-child {
+            font-size: 1.4em;
+            margin-right: 15px;
+            color: var(--color-primary);
+        }
+        
+        .accordion-header h3 {
+            margin: 0;
+            flex-grow: 1;
+            font-size: 1.1em;
+            color: var(--color-primary);
+        }
+
+        /* Icône de bascule (flèche) */
+        .toggle-icon {
+            transition: transform 0.3s ease;
+            color: var(--color-secondary);
+        }
+
+        /* Rotation de la flèche lorsque le contenu est actif */
+        .accordion-header.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            background: white;
+            padding: 0 20px;
+            max-height: 0; /* MASQUE LE CONTENU */
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+        }
+        
+        .accordion-content p {
+            margin: 10px 0;
+        }
+        
+        .accordion-content ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 10px;
+        }
+        
+        .accordion-content ul li {
+            padding: 5px 0 5px 25px;
+            position: relative;
+            font-size: 0.95em;
+        }
+
+        .accordion-content ul li:before {
+            content: "•"; /* Puce personnalisée */
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+
+        /* Lorsque l'accordéon est ouvert */
+        .accordion-content.open {
+            padding: 20px;
+            border-top: 1px solid #eee;
+            /* NOUVELLES RÈGLES POUR LE DÉFILEMENT INTERNE */
+            max-height: 250px !important; /* Définir une hauteur maximale visible (à ajuster) */
+            overflow-y: auto; /* Active le défilement vertical si le contenu dépasse 250px */
+            -webkit-overflow-scrolling: touch; /* Améliore le défilement sur les appareils tactiles */
+        }
+
+
+        /* ----------------------------------- */
         /* Section Avis Multiples */
         /* ----------------------------------- */
         .reviews-grid {
@@ -389,7 +497,7 @@
                 margin: 5px 10px;
             }
             .hero {
-                /* On utilise l'image1.png et on garde le fond bleu si elle n'est pas trouvée */
+                /* CORRECTION DE HAUTEUR */
                 margin-top: 110px;
                 padding: 0;
                 height: 400px; /* Taille fixe raisonnable pour mobile */
@@ -397,7 +505,7 @@
                 width: 100%;
                 background:
                     linear-gradient(rgba(12, 62, 110, 0.7), rgba(12, 62, 110, 0.65)),
-                    url('image1.png') center center/cover no-repeat; /* Utilisation de cover au lieu de contain pour remplir */
+                    url('image1.png') center center/cover no-repeat; /* Chemin d'image corrigé */
                 background-color: var(--color-primary);
             }
             
@@ -407,31 +515,29 @@
                 inset: 0;
                 display: flex;
                 flex-direction: column;
-                justify-content: flex-end; /* Pour placer le texte en bas de l'image (comme vous l'aviez fait) */
+                justify-content: flex-end;
                 align-items: center;
                 padding: 32px 20px 28px;
                 
-                /* AJOUT DE CONTRAINTE POUR LE TEXTE */
-                width: 100%; /* Prend toute la largeur disponible */
-                max-width: none; /* Retirez toute limite qui pourrait causer des problèmes */
+                width: 100%; 
+                max-width: none; 
 
                 background: linear-gradient(180deg, rgba(12, 62, 110, 0.05) 25%, rgba(12, 62, 110, 0.85) 95%);
             }
             
             .hero h1 {
-                font-size: 7.5vw; /* TAILLE DYNAMIQUE TRES PETITE (7.5% de la largeur de l'écran) */
+                font-size: 7.5vw; /* TAILLE DYNAMIQUE CORRIGÉE */
                 line-height: 1.1;
-                margin-bottom: 12px; /* Réduction de l'espace pour gagner de la place */
+                margin-bottom: 12px;
                 padding: 0 8px;
             }
             
             .hero h2 {
-                /* Si vous voulez que ce texte apparaisse : changez "none" en "block" */
                 display: block; 
                 font-size: 1.1em;
                 margin-bottom: 10px;
                 padding: 0 8px;
-                color: var(--color-light); /* Assurez-vous qu'il est blanc pour être visible */
+                color: var(--color-light); 
             }
 
             .btn-whatsapp {
@@ -521,17 +627,86 @@ Taxi conventionné CPAM
 
         <section id="services" class="section-padded bg-light-blue">
             <div class="container">
-                <h2 class="section-title">Nos Services </h2>
-                <ul class="service-list">
-                    <li><i class="fas fa-user-nurse icon-blue"></i> Taxi conventionné / transport médical (TPMR) : transferts aller-retour, agréés CPAM.</li>
-                    <li><i class="fas fa-plane-arrival icon-blue"></i> Transferts aéroports et gares : ponctualité garantie vers ou depuis tous les hubs.</li>
-                    <li><i class="fas fa-glass-cheers icon-blue"></i> Événements spéciaux : chauffeur privé pour mariages, soirées et séminaires.</li>
-                    <li><i class="fas fa-route icon-blue"></i> Longue distance et international : voyages sur mesure dans un confort optimal.</li>
-                    <li><i class="fas fa-car icon-blue"></i> Trajets privés : un service sur mesure, dans le confort et la discrétion.</li>                
-                </ul>
+                <h2 class="section-title">Nos Services</h2>
+                
+                <div class="accordion-container">
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <i class="fas fa-user-nurse icon-blue"></i> 
+                            <h3>Taxi Conventionné CPAM / Transport Médical</h3>
+                            <i class="fas fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Nous assurons vos transferts aller-retour agréés **CPAM** (mutuelle incluse) pour tous vos soins (hospitalisations, dialyses, chimiothérapies, rééducations, etc.). Service sécurisé, discret et ponctuel.</p>
+                            
+                            <p><strong>Desserte des principaux hôpitaux et cliniques des Alpes-Maritimes :</strong></p>
+                            <ul>
+                                <li>🏥 Centre Hospitalier Universitaire (CHU) de Nice (Pasteur, Archet)</li>
+                                <li>🏥 Centre Hospitalier de Cannes (Simone Veil)</li>
+                                <li>🏥 Hôpital de Grasse</li>
+                                <li>🏥 Centre Antoine Lacassagne (Nice)</li>
+                                <li>🏥 Clinique Saint-George (Nice)</li>
+                                <li>🏥 Cliniques privées et centres de rééducation sur Cagnes-sur-Mer et environs.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <i class="fas fa-plane-arrival icon-blue"></i> 
+                            <h3>Transferts Aéroports et Gares (Accueil VIP)</h3>
+                            <i class="fas fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Ponctualité garantie pour vos départs et arrivées. Suivi en temps réel de votre vol/train. Accueil avec pancarte sur demande. Évitez le stress du parking et des transports en commun.</p>
+                            
+                            <p><strong>Hubs de la région desservis :</strong></p>
+                            <ul>
+                                <li>✈️ **Aéroport de Nice-Côte d'Azur (NCE)**</li>
+                                <li>✈️ Aéroport de Cannes-Mandelieu</li>
+                                <li>🚆 Gare de Nice Ville et Nice Saint-Augustin</li>
+                                <li>🚆 Gares de Cannes, Antibes, Cagnes-sur-Mer, Monaco.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <i class="fas fa-car icon-blue"></i> 
+                            <h3>Trajets Privés / Chauffeur sur Mesure</h3>
+                            <i class="fas fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Un service haut de gamme pour tous vos déplacements d'affaires, shopping ou loisirs. Discrétion et flexibilité pour vos besoins quotidiens.</p>
+                            
+                            <p><strong>Service ancré et prioritaire dans les principales villes :</strong></p>
+                            <ul>
+                                <li>📍 **Cagnes-sur-Mer (Ancrage)**</li>
+                                <li>📍 Nice</li>
+                                <li>📍 Cannes</li>
+                                <li>📍 Antibes / Juan-les-Pins</li>
+                                <li>📍 Saint-Laurent-du-Var / Villeneuve-Loubet</li>
+                                <li>📍 Vence / Saint-Paul-de-Vence</li>
+                                <li>📍 Monaco / Menton (Longue distance)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <i class="fas fa-route icon-blue"></i> 
+                            <h3>Longue Distance & Événements (France/Europe)</h3>
+                            <i class="fas fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Voyages sur mesure sur toutes distances (France et Europe). Chauffeur privé pour mariages, soirées, séminaires ou événements d'entreprise. Véhicule premium équipé Wi-Fi et rafraîchissements pour votre confort maximal.</p>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </section>
-
         <section id="avis" class="section-padded">
             <div class="container">
                 <h2 class="section-title">⭐ Avis Clients</h2>
@@ -584,7 +759,9 @@ Un vrai plaisir de tomber sur un professionnel aussi sérieux et souriant. Je re
                 </div>
         </section>
 
-    </div> <script>
+    </div> 
+    
+    <script>
         // Le code JavaScript pour l'animation d'entrée
         document.addEventListener("DOMContentLoaded", function() {
             const preloader = document.getElementById('preloader');
@@ -605,6 +782,31 @@ Un vrai plaisir de tomber sur un professionnel aussi sérieux et souriant. Je re
                 }, 1000); 
             }, 2500); 
         });
+
+        // NOUVEAU CODE JAVASCRIPT POUR L'ACCORDION (ADAPTÉ AU DÉFILEMENT INTERNE)
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            
+            // 1. Gère la flèche et la classe 'active'
+            header.classList.toggle('active');
+
+            // 2. Gère l'ouverture/fermeture en basculant la classe 'open'
+            if (content.classList.contains('open')) {
+                // Si l'accordéon est déjà ouvert, on le ferme
+                content.classList.remove('open'); 
+            } else {
+                // Fermer tous les autres accordéons ouverts
+                document.querySelectorAll('.accordion-content').forEach(otherContent => {
+                    if (otherContent !== content && otherContent.classList.contains('open')) {
+                        otherContent.classList.remove('open');
+                        otherContent.previousElementSibling.classList.remove('active');
+                    }
+                });
+                
+                // Ouvrir l'accordéon actuel
+                content.classList.add('open'); 
+            }
+        }
     </script>
 </body>
 </html>
