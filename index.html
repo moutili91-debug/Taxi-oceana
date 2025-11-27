@@ -315,7 +315,7 @@
         .accordion-content.open {
             padding: 20px;
             border-top: 1px solid #eee;
-            /* NOUVELLES RÈGLES POUR LE DÉFILEMENT INTERNE */
+            /* RÈGLES POUR LE DÉFILEMENT INTERNE */
             max-height: 250px !important; /* Définir une hauteur maximale visible (à ajuster) */
             overflow-y: auto; /* Active le défilement vertical si le contenu dépasse 250px */
             -webkit-overflow-scrolling: touch; /* Améliore le défilement sur les appareils tactiles */
@@ -323,13 +323,15 @@
 
 
         /* ----------------------------------- */
-        /* Section Avis Multiples */
+        /* Styles Grille d'Avis (Revisité) */
         /* ----------------------------------- */
         .reviews-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            /* 3 colonnes de taille égale au minimum 300px */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
             gap: 30px;
             margin-top: 40px;
+            transition: all 0.5s ease-out; /* Pour une transition douce à l'ouverture */
         }
 
         .review-card {
@@ -339,7 +341,12 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             border-top: 4px solid var(--color-secondary);
             position: relative;
-            transition: transform 0.3s;
+            transition: transform 0.3s, opacity 0.4s;
+            /* Laisser la carte prendre la hauteur du contenu */
+            height: auto; 
+            min-height: 200px; 
+            display: flex;
+            flex-direction: column;
         }
 
         .review-card:hover {
@@ -374,10 +381,44 @@
             font-style: italic;
             color: #555;
             margin-bottom: 20px;
+            flex-grow: 1; /* Permet au texte de prendre l'espace nécessaire */
         }
         
+        /* Classe pour masquer les avis supplémentaires */
+        .hidden-review {
+            display: none;
+            opacity: 0;
+            /* Prévoir une transition pour l'apparition si l'on utilise JS */
+            transition: opacity 0.5s ease-out, transform 0.5s;
+        }
+        
+        /* Classe d'apparition */
+        .visible-review {
+            display: flex !important; /* Écraser display: none */
+            opacity: 1 !important;
+        }
+        
+        /* Style du bouton Voir Plus */
+        .btn-show-more {
+            display: block;
+            margin: 30px auto 0;
+            background: var(--color-accent);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+        
+        .btn-show-more:hover {
+            background: var(--color-primary);
+            transform: translateY(-2px);
+        }
+
         /* ----------------------------------- */
-        /* Reste des sections (Avantages, Services, Contact) - pas de changement majeur dans le style */
+        /* Reste des sections (Avantages, Services, Contact) */
         /* ----------------------------------- */
         .feature-grid {
             display: flex;
@@ -395,18 +436,6 @@
         .bg-light-blue {
             background-color: #F0F8FF; 
         }
-        .service-list {
-            list-style: none;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .service-list li {
-            background: white;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-left: 5px solid var(--color-accent);
-            border-radius: 5px;
-        }
         .bg-footer {
             background-color: var(--color-primary);
             color: var(--color-light);
@@ -422,7 +451,7 @@
         }
 
         /* ----------------------------------- */
-        /* Animation d'Entrée (Preloader) - Conserve l'effet premium */
+        /* Animation d'Entrée (Preloader) */
         /* ----------------------------------- */
         .preloader {
             position: fixed;
@@ -497,19 +526,16 @@
                 margin: 5px 10px;
             }
             .hero {
-                /* CORRECTION DE HAUTEUR */
                 margin-top: 110px;
                 padding: 0;
-                height: 400px; /* Taille fixe raisonnable pour mobile */
+                height: 400px; 
                 position: relative;
                 width: 100%;
                 background:
                     linear-gradient(rgba(12, 62, 110, 0.7), rgba(12, 62, 110, 0.65)),
-                    url('image1.png') center center/cover no-repeat; /* Chemin d'image corrigé */
+                    url('image1.png') center center/cover no-repeat;
                 background-color: var(--color-primary);
             }
-            
-            /* CORRECTION DU TITRE ET DU CONTENEUR DE TEXTE */
             .hero-content {
                 position: absolute;
                 inset: 0;
@@ -518,20 +544,16 @@
                 justify-content: flex-end;
                 align-items: center;
                 padding: 32px 20px 28px;
-                
                 width: 100%; 
                 max-width: none; 
-
                 background: linear-gradient(180deg, rgba(12, 62, 110, 0.05) 25%, rgba(12, 62, 110, 0.85) 95%);
             }
-            
             .hero h1 {
-                font-size: 7.5vw; /* TAILLE DYNAMIQUE CORRIGÉE */
+                font-size: 7.5vw;
                 line-height: 1.1;
                 margin-bottom: 12px;
                 padding: 0 8px;
             }
-            
             .hero h2 {
                 display: block; 
                 font-size: 1.1em;
@@ -539,14 +561,12 @@
                 padding: 0 8px;
                 color: var(--color-light); 
             }
-
             .btn-whatsapp {
                 width: 100%;
                 max-width: 250px;
                 padding: 14px 22px;
                 font-size: 1.1em;
             }
-            
             .hero-mobile-subtext {
                 display: block;
                 margin: 20px auto 0;
@@ -559,7 +579,8 @@
             .feature-grid {
                 flex-direction: column;
             }
-            .reviews-grid {
+            /* Sur mobile, une seule colonne d'avis */
+            .reviews-grid { 
                 grid-template-columns: 1fr;
             }
         }
@@ -709,17 +730,19 @@ Taxi conventionné CPAM
         </section>
         <section id="avis" class="section-padded">
             <div class="container">
-                <h2 class="section-title">⭐ Avis Clients</h2>
+                <h2 class="section-title">⭐ Avis Clients (5 Étoiles)</h2>
                 <p class="subtitle">La confiance est notre priorité. Découvrez ce que nos clients disent de notre service premium.</p>
-                <div class="reviews-grid">
+                
+                <div class="reviews-grid" id="reviews-grid">
                     
                     <div class="review-card">
                         <div class="review-header">
                             <i class="fab fa-google"></i>
                             <span class="stars">★★★★★</span>
-                            <span class="reviewer-name">Mathieu P.</span>
+                            <span class="reviewer-name">Lana Grimaldi</span>
                         </div>
-                        <p class="review-text">"Réservation de dernière minute à 3h du matin, le chauffeur était là en avance. Confort exceptionnel et grande courtoisie. Le vrai service 24/7. Je recommande vivement !"</p>
+                        <p class="review-text">"Le trajet a été impeccable : conduite douce, sécurisée, véhicule propre et chauffeur très attentif mais surtout respectueux. En tant qu’ancienne cliente Uber, je suis vraiment surprise par ce niveau de sérieux. Je me suis sentie en confiance du début à la fin. Je garde votre carte pour mes prochains trajets 👏🏼
+"</p>
                     </div>
 
                     <div class="review-card">
@@ -728,26 +751,67 @@ Taxi conventionné CPAM
                             <span class="stars">★★★★★</span>
                             <span class="reviewer-name">Poopeye</span>
                         </div>
-                        <p class="review-text">"J’ai eu le plaisir de faire appel à ce taxi lors de mon voyage d’affaires à Nice, et je ne peux que saluer le professionnalisme exemplaire du chauffeur. Ponctuel, courtois et toujours de bonne humeur, il a rendu le trajet à la fois agréable et détendu. La voiture était impeccable, le service irréprochable et la conversation très sympathique.
-Un vrai plaisir de tomber sur un professionnel aussi sérieux et souriant. Je recommande vivement à tous ceux qui cherchent un taxi fiable et chaleureux à Nice ! 🚖✨"</p>
+                        <p class="review-text">"J’ai eu le plaisir de faire appel à ce taxi lors de mon voyage d’affaires à Nice, et je ne peux que saluer le professionnalisme exemplaire du chauffeur. Ponctuel, courtois et toujours de bonne humeur, il a rendu le trajet à la fois agréable et détendu. La voiture était impeccable, le service irréprochable et la conversation très sympathique. Un vrai plaisir de tomber sur un professionnel aussi sérieux et souriant. Je recommande vivement à tous ceux qui cherchent un taxi fiable et chaleureux à Nice ! 🚖✨"</p>
                     </div>
 
                     <div class="review-card">
                         <div class="review-header">
                             <i class="fab fa-google"></i>
                             <span class="stars">★★★★★</span>
-                            <span class="reviewer-name">Mehdi.B</span>
+                            <span class="reviewer-name">David Chainiaux</span>
                         </div>
-                        <p class="review-text">"Service de taxi conventionné de qualité supérieure. Très attentif aux besoins des patients. Ponctuel et discret. Un partenaire de transport médical fiable."</p>
+                        <p class="review-text">"Service au top ! Chauffeur sérieux, ponctuel et très respectueux. Trajet agréable, voiture propre et confortable. Rien à dire, je recommande fortement Taxi Oceana pour des déplacements en toute confiance. Merci encore !"</p>
                     </div>
+                    
+                    <div class="review-card hidden-review">
+                        <div class="review-header">
+                            <i class="fab fa-google"></i>
+                            <span class="stars">★★★★★</span>
+                            <span class="reviewer-name">Ines Bourhim</span>
+                        </div>
+                        <p class="review-text">"Ce matin j’ai eu rdv à la polyclinique St Jean à Cagnes et j’ai donc fait appel à ce taxi pour mon trajet jusqu’à l’hôpital. C’est jamais très joyeux de s’y rendre mais je voulais vraiment remercier le chauffeur pour sa gentillesse et son empathie. J’avais la trouille mais il a su me rassurer et me remonter le moral. C’est désormais le chauffeur que je recontacterai pour mes trajets médicaux. Un grand merci à lui 🙏🏽"</p>
+                    </div>
+                    
+                    <div class="review-card hidden-review">
+                        <div class="review-header">
+                            <i class="fab fa-google"></i>
+                            <span class="stars">★★★★★</span>
+                            <span class="reviewer-name">Fabio Henriques</span>
+                        </div>
+                        <p class="review-text">"J’ai été très satisfait de mon trajet. Le conducteur était vraiment aimable, professionnel et très attentif. La voiture était propre, le trajet agréable, et tout s’est déroulé parfaitement. Je recommande vivement ce taxi !"</p>
+                    </div>
+
+                    <div class="review-card hidden-review">
+                        <div class="review-header">
+                            <i class="fab fa-google"></i>
+                            <span class="stars">★★★★★</span>
+                            <span class="reviewer-name">Steph Basen</span>
+                        </div>
+                        <p class="review-text">"Vous pouvez faire entièrement confiance à ce taxi très solaire mais surtout très humain aussi. Ce qui est vraiment agréable dans les temps qui cours.
+Merci pour notre agréable trajet je ne passerais que par vous désormais.
+Restez ainsi aux grands coeur et professionnel"</p>
+                    </div>
+                    
+                    <div class="review-card hidden-review">
+                        <div class="review-header">
+                            <i class="fab fa-google"></i>
+                            <span class="stars">★★★★★</span>
+                            <span class="reviewer-name">Camelia Rifi</span>
+                        </div>
+                        <p class="review-text">"J’ai eu une excellente expérience avec ce taxi. Chauffeur très professionnel, ponctuel et vraiment agréable. La voiture était propre et confortable, le trajet s’est super bien passé. Je recommande à 100 % ses services."</p>
+                    </div>
+
                 </div>
+                
+                <button id="show-more-btn" class="btn-show-more" onclick="toggleReviews()">
+                    Voir plus d'avis 
+                </button>
                 
                 <div style="text-align: center; margin-top: 40px;">
                     <a href="https://share.google/By8t2RHKfBGJpUukc" target="_blank" class="btn-gold">Voir tous nos Avis sur Google</a>
                 </div>
             </div>
         </section>
-
         <section id="contact" class="section-padded bg-footer">
             <div class="container contact-grid">
                 <div>
@@ -783,7 +847,7 @@ Un vrai plaisir de tomber sur un professionnel aussi sérieux et souriant. Je re
             }, 2500); 
         });
 
-        // NOUVEAU CODE JAVASCRIPT POUR L'ACCORDION (ADAPTÉ AU DÉFILEMENT INTERNE)
+        // CODE JAVASCRIPT POUR L'ACCORDION
         function toggleAccordion(header) {
             const content = header.nextElementSibling;
             
@@ -807,6 +871,51 @@ Un vrai plaisir de tomber sur un professionnel aussi sérieux et souriant. Je re
                 content.classList.add('open'); 
             }
         }
+        
+        // NOUVEAU CODE JAVASCRIPT POUR LE BOUTON "VOIR PLUS D'AVIS"
+        let reviewsVisible = false;
+
+        function toggleReviews() {
+            const hiddenReviews = document.querySelectorAll('.hidden-review');
+            const button = document.getElementById('show-more-btn');
+            
+            if (reviewsVisible) {
+                // Cacher les avis (revenir à l'état initial)
+                hiddenReviews.forEach(review => {
+                    review.style.opacity = '0';
+                    review.style.transform = 'translateY(10px)';
+                    // Utiliser un timeout pour que l'animation d'opacité se fasse avant de cacher l'élément
+                    setTimeout(() => {
+                        review.style.display = 'none';
+                    }, 400); 
+                });
+                button.textContent = "Voir plus d'avis";
+                reviewsVisible = false;
+            } else {
+                // Afficher les avis
+                hiddenReviews.forEach(review => {
+                    review.style.display = 'flex'; // Utiliser flex pour la grille/hauteur
+                    // Forcer un redraw pour l'animation
+                    review.offsetHeight; 
+                    review.style.opacity = '1';
+                    review.style.transform = 'translateY(0)';
+                });
+                button.textContent = "Masquer les avis supplémentaires";
+                reviewsVisible = true;
+            }
+        }
+
+        // Au chargement initial, s'assurer que les avis masqués sont bien cachés
+        document.addEventListener("DOMContentLoaded", function() {
+            const hiddenReviews = document.querySelectorAll('.hidden-review');
+            hiddenReviews.forEach(review => {
+                review.style.display = 'none';
+            });
+            
+            // ... (reste du code du DOMContentLoaded)
+            // L'appel à initReviewSlider a été supprimé ici car nous ne sommes plus en mode slider
+        });
+
     </script>
 </body>
 </html>
